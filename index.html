@@ -22,19 +22,19 @@
             <!-- Vol. 1 -->
             <div class="doc-card">
                 <img src="content/vol1.png" class="doc-img" alt="">
-                <a href="#" class="play-link doc-play-btn"><img src="buttons/button1.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link doc-play-btn play-btn-trigger" data-src="content/vol1.mp4"><img src="buttons/button1.png" class="play-btn-img" alt="Play"></a>
             </div>
 
             <!-- Vol. 2 -->
             <div class="doc-card">
                 <img src="content/vol2.png" class="doc-img" alt="">
-                <a href="#" class="play-link doc-play-btn"><img src="buttons/button2.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link doc-play-btn play-btn-trigger" data-src="content/vol2.mp4"><img src="buttons/button2.png" class="play-btn-img" alt="Play"></a>
             </div>
 
             <!-- Vol. 3 -->
             <div class="doc-card">
                 <img src="content/vol3.png" class="doc-img" alt="">
-                <a href="#" class="play-link doc-play-btn"><img src="buttons/button3.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link doc-play-btn play-btn-trigger" data-src="content/vol3.mp4"><img src="buttons/button3.png" class="play-btn-img" alt="Play"></a>
             </div>
         </section>
 
@@ -53,48 +53,99 @@
             <!-- Song 1 -->
             <div class="song-card">
                 <img src="content/song1.png" class="song-frame" alt="Song 1">
-                <a href="#" class="play-link song-play-btn"><img src="buttons/songbutton1.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link song-play-btn play-btn-trigger" data-src="content/song1.mp4"><img src="buttons/songbutton1.png" class="play-btn-img" alt="Play"></a>
             </div>
 
             <!-- Song 2 -->
             <div class="song-card">
                 <img src="content/song2.png" class="song-frame" alt="Song 2">
-                <a href="#" class="play-link song-play-btn"><img src="buttons/songbutton2.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link song-play-btn play-btn-trigger" data-src="content/song2.mp4"><img src="buttons/songbutton2.png" class="play-btn-img" alt="Play"></a>
             </div>
 
-            <<!-- Song 3 -->
+            <!-- Song 3 -->
             <div class="song-card">
                 <img src="content/song3.png" class="song-frame" alt="">
-                <a href="#" class="play-link song-play-btn"><img src="buttons/songbutton3.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link song-play-btn play-btn-trigger" data-src="content/song3.mp4"><img src="buttons/songbutton3.png" class="play-btn-img" alt="Play"></a>
             </div>
 
             <!-- Song 4 -->
             <div class="song-card">
                 <img src="content/song4.png" class="song-frame" alt="">
-                <a href="#" class="play-link song-play-btn"><img src="buttons/songbutton4.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link song-play-btn play-btn-trigger" data-src="content/song4.mp4"><img src="buttons/songbutton4.png" class="play-btn-img" alt="Play"></a>
             </div>
 
             <!-- Song 5 (Present) -->
             <div class="song-card">
                 <img src="content/song5.png" class="song-frame" alt="">
-                <a href="#" class="play-link song-play-btn"><img src="buttons/songbutton5.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link song-play-btn play-btn-trigger" data-src="content/song5.mp4"><img src="buttons/songbutton5.png" class="play-btn-img" alt="Play"></a>
             </div>
 
             <!-- Song 6 -->
             <div class="song-card">
                 <img src="content/song6.png" class="song-frame" alt="Song 6">
-                <a href="#" class="play-link song-play-btn"><img src="buttons/songbutton6.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link song-play-btn play-btn-trigger" data-src="content/song6.mp4"><img src="buttons/songbutton6.png" class="play-btn-img" alt="Play"></a>
             </div>
 
-            <!-- Song 7 -->
+            <!-- Song 7 (SOON! Tie-up video) -->
             <div class="song-card">
                 <img src="content/song7.png" class="song-frame" alt="Song 7">
-                <a href="#" class="play-link song-play-btn"><img src="buttons/songbutton7.png" class="play-btn-img" alt="Play"></a>
+                <a href="#" class="play-link song-play-btn play-btn-trigger" data-src="content/song7.mp4"><img src="buttons/songbutton7.png" class="play-btn-img" alt="Play"></a>
             </div>
 
         </section>
 
     </div>
+
+    <!-- Video Modal Overlay -->
+    <div id="videoModal" class="video-modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <video id="appVideo" controls playsinline>
+                <source id="videoSource" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Modal Playback Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.getElementById("videoModal");
+            const video = document.getElementById("appVideo");
+            const videoSource = document.getElementById("videoSource");
+            const closeBtn = document.querySelector(".close-btn");
+
+            // Target ALL play buttons on the page (documentaries + songs)
+            document.querySelectorAll(".play-btn-trigger").forEach(button => {
+                button.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const videoFileName = this.getAttribute("data-src");
+                    
+                    if (videoFileName) {
+                        videoSource.src = videoFileName;
+                        video.load();
+                        modal.style.display = "flex";
+                        video.play();
+                    }
+                });
+            });
+
+            // Close modal behavior
+            closeBtn.addEventListener("click", function() {
+                modal.style.display = "none";
+                video.pause();
+                video.currentTime = 0;
+            });
+
+            window.addEventListener("click", function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
