@@ -14,6 +14,7 @@ html, body {
     min-height: 100%;
     position: relative;
 }
+
 .section-block {
     width: 100%;
     display: flex;
@@ -22,7 +23,14 @@ html, body {
     margin-bottom: 12px;
 }
 
-.header-banner, .team-grid-img {
+.header-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 30px; /* Adds breathing room above the documentary banner */
+}
+
+.team-grid-img {
     width: 100%;
     height: auto;
     display: block;
@@ -45,6 +53,8 @@ html, body {
 
 .play-link {
     position: absolute;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* Removes tap highlight flash on iOS 7 */
 }
 
 .play-btn-img {
@@ -55,18 +65,17 @@ html, body {
 
 /* --- DOCUMENTARY BUTTON POSITIONING --- */
 .doc-play-btn {
-    left: 170px;    /* Adjust horizontal position for vol buttons */
-    bottom: 55px;  /* Adjust vertical position for vol buttons */
+    left: 170px;    /* Horizontal position for vol buttons */
+    bottom: 55px;   /* Vertical position for vol buttons */
 }
 
 /* --- SONG BUTTON POSITIONING --- */
 .song-play-btn {
-    left: 10px;     /* Adjust horizontal position for song buttons */
-    bottom: 12px;   /* Adjust vertical position for song buttons */
+    left: 10px;     /* Horizontal position for song buttons */
+    bottom: 12px;   /* Vertical position for song buttons */
 }
-.header-banner {
-    margin-top: 30px; /* Adds breathing room above the DOCUMENTARY banner */
-}
+
+/* --- VIDEO MODAL OVERLAY --- */
 .video-modal {
     position: fixed;
     top: 0;
@@ -75,8 +84,7 @@ html, body {
     height: 100%;
     background: rgba(0, 0, 0, 0.85);
     z-index: 9999;
-    /* Centering fallback for older iOS Safari */
-    text-align: center;
+    text-align: center; /* Centering fallback for older iOS Safari */
 }
 
 .video-modal::before {
