@@ -106,3 +106,51 @@
             </video>
         </div>
     </div>
+
+    <!-- Pure Touchend iOS 7 Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.getElementById("videoModal");
+            const video = document.getElementById("appVideo");
+            const videoSource = document.getElementById("videoSource");
+            const closeBtn = document.querySelector(".close-btn");
+
+            document.querySelectorAll(".play-btn-trigger").forEach(button => {
+                button.addEventListener("touchend", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const videoFileName = this.getAttribute("data-src");
+                    
+                    if (videoFileName) {
+                        videoSource.src = videoFileName;
+                        video.load();
+                        modal.style.display = "block";
+                        video.play();
+                    }
+                }, false);
+            });
+
+            function closeModal() {
+                modal.style.display = "none";
+                video.pause();
+                video.currentTime = 0;
+            }
+
+            closeBtn.addEventListener("touchend", function(e) {
+                e.preventDefault();
+                closeModal();
+            }, false);
+
+            closeBtn.addEventListener("click", closeModal);
+
+            window.addEventListener("click", function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
