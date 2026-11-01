@@ -1,0 +1,104 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-container {
+    width: 320px;
+    margin: 0 auto;
+    background-image: url('banners/bg_pattern.png');
+    background-repeat: repeat-y;
+    background-size: 320px auto;
+    background-position: top center;
+    min-height: 100%;
+    position: relative;
+}
+.section-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.header-banner, .team-grid-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.doc-card, .song-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 290px;
+}
+
+.doc-img, .song-frame {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.play-link {
+    position: absolute;
+}
+
+.play-btn-img {
+    width: 110px;
+    height: auto;
+    display: block;
+}
+
+/* --- DOCUMENTARY BUTTON POSITIONING --- */
+.doc-play-btn {
+    left: 170px;    /* Adjust horizontal position for vol buttons */
+    bottom: 55px;  /* Adjust vertical position for vol buttons */
+}
+
+/* --- SONG BUTTON POSITIONING --- */
+.song-play-btn {
+    left: 10px;     /* Adjust horizontal position for song buttons */
+    bottom: 12px;   /* Adjust vertical position for song buttons */
+}
+.header-banner {
+    margin-top: 30px; /* Adds breathing room above the DOCUMENTARY banner */
+}
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 300px;
+}
+
+.modal-content video {
+    width: 100%;
+    height: auto;
+    border: 2px solid #00c0ff;
+    background: #000;
+}
+
+.close-btn {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
