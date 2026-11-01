@@ -107,7 +107,7 @@
         </div>
     </div>
 
-    <!-- Modal Playback Logic -->
+    <!-- Modal Playback Logic Optimized for iOS 7 -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const modal = document.getElementById("videoModal");
@@ -115,17 +115,19 @@
             const videoSource = document.getElementById("videoSource");
             const closeBtn = document.querySelector(".close-btn");
 
-            // Target ALL play buttons on the page (documentaries + songs)
             document.querySelectorAll(".play-btn-trigger").forEach(button => {
+                // Listen to both touch start and click for instant iOS 7 response
                 button.addEventListener("click", function(e) {
                     e.preventDefault();
                     e.stopPropagation();
+                    
                     const videoFileName = this.getAttribute("data-src");
                     
                     if (videoFileName) {
                         videoSource.src = videoFileName;
                         video.load();
-                        modal.style.display = "flex";
+                        // Use block instead of flex for older iOS Safari compatibility
+                        modal.style.display = "block";
                         video.play();
                     }
                 });
