@@ -1,0 +1,117 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-container {
+    width: 320px;
+    margin: 0 auto;
+    background-image: url('banners/bg_pattern.png');
+    background-repeat: repeat-y;
+    background-size: 320px auto;
+    background-position: top center;
+    min-height: 100%;
+    position: relative;
+}
+
+.section-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.header-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 30px; /* Adds breathing room above the documentary banner */
+}
+
+.team-grid-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.doc-card, .song-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 290px;
+}
+
+.doc-img, .song-frame {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.play-link {
+    position: absolute;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* Removes tap highlight flash on iOS 7 */
+}
+
+.play-btn-img {
+    width: 110px;
+    height: auto;
+    display: block;
+}
+
+/* --- DOCUMENTARY BUTTON POSITIONING --- */
+.doc-play-btn {
+    left: 170px;    /* Horizontal position for vol buttons */
+    bottom: 55px;   /* Vertical position for vol buttons */
+}
+
+/* --- SONG BUTTON POSITIONING --- */
+.song-play-btn {
+    left: 10px;     /* Horizontal position for song buttons */
+    bottom: 12px;   /* Vertical position for song buttons */
+}
+
+/* --- VIDEO MODAL OVERLAY --- */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    text-align: center; /* Centering fallback for older iOS Safari */
+}
+
+.video-modal::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+}
+
+.modal-content {
+    display: inline-block;
+    vertical-align: middle;
+    width: 90%;
+    max-width: 300px;
+    background: #000;
+    padding: 10px;
+    border-radius: 6px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}

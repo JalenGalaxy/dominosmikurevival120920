@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=320, initial-scale=1.0">
+    <title>Domino's App feat. Hatsune Miku - Making Of</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="mobile-container">
+
+        <!-- STORY SECTION -->
+        <section class="section-block">
+            <img src="banners/story.png" class="header-banner" alt="STORY">
+        </section>
+
+        <!-- DOCUMENTARY SECTION -->
+        <section class="section-block">
+            <img src="banners/documentary.png" class="header-banner" alt="DOCUMENTARY">
+            
+            <!-- Vol. 1 -->
+            <div class="doc-card">
+                <img src="content/vol1.png" class="doc-img" alt="">
+                <div class="play-link doc-play-btn play-btn-trigger" onclick="openVideo('content/vol1.mp4')">
+                    <img src="buttons/button1.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+
+            <!-- Vol. 2 -->
+            <div class="doc-card">
+                <img src="content/vol2.png" class="doc-img" alt="">
+                <div class="play-link doc-play-btn play-btn-trigger" onclick="openVideo('content/vol2.mp4')">
+                    <img src="buttons/button2.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+
+            <!-- Vol. 3 -->
+            <div class="doc-card">
+                <img src="content/vol3.png" class="doc-img" alt="">
+                <div class="play-link doc-play-btn play-btn-trigger" onclick="openVideo('content/vol3.mp4')">
+                    <img src="buttons/button3.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+        </section>
+
+        <!-- MEMBER SECTION -->
+        <section class="section-block">
+            <img src="banners/members.png" class="header-banner" alt="MEMBER">
+            <div class="team-grid-wrapper">
+                <img src="content/teamandsupport.png" class="team-grid-img" alt="Teams & Support">
+            </div>
+        </section>
+
+        <!-- SONGS SECTION -->
+        <section class="section-block">
+            <img src="banners/songs.png" class="header-banner" alt="SONGS">
+
+            <!-- Song 1 -->
+            <div class="song-card">
+                <img src="content/song1.png" class="song-frame" alt="Song 1">
+                <div class="play-link song-play-btn play-btn-trigger" onclick="openVideo('content/song1.mp4')">
+                    <img src="buttons/songbutton1.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+
+            <!-- Song 2 -->
+            <div class="song-card">
+                <img src="content/song2.png" class="song-frame" alt="Song 2">
+                <div class="play-link song-play-btn play-btn-trigger" onclick="openVideo('content/song2.mp4')">
+                    <img src="buttons/songbutton2.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+
+            <!-- Song 3 -->
+            <div class="song-card">
+                <img src="content/song3.png" class="song-frame" alt="">
+                <div class="play-link song-play-btn play-btn-trigger" onclick="openVideo('content/song3.mp4')">
+                    <img src="buttons/songbutton3.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+
+            <!-- Song 4 -->
+            <div class="song-card">
+                <img src="content/song4.png" class="song-frame" alt="">
+                <div class="play-link song-play-btn play-btn-trigger" onclick="openVideo('content/song4.mp4')">
+                    <img src="buttons/songbutton4.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+
+            <!-- Song 5 (Present) -->
+            <div class="song-card">
+                <img src="content/song5.png" class="song-frame" alt="">
+                <div class="play-link song-play-btn play-btn-trigger" onclick="openVideo('content/song5.mp4')">
+                    <img src="buttons/songbutton5.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+
+            <!-- Song 6 -->
+            <div class="song-card">
+                <img src="content/song6.png" class="song-frame" alt="Song 6">
+                <div class="play-link song-play-btn play-btn-trigger" onclick="openVideo('content/song6.mp4')">
+                    <img src="buttons/songbutton6.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+
+            <!-- Song 7 (SOON! Tie-up video via Internet Archive streaming) -->
+            <div class="song-card">
+                <img src="content/song7.png" class="song-frame" alt="Song 7">
+                <div class="play-link song-play-btn play-btn-trigger" onclick="openVideo('https://archive.org/download/hatsune-miku-soon-dominos-pizza-x-hatsune-miku/%E3%80%90Hatsune%20Miku%E3%80%91%20SOON%21%20%28Domino%27s%20Pizza%20x%20Hatsune%20Miku%29.mp4')">
+                    <img src="buttons/songbutton7.png" class="play-btn-img" alt="Play">
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Video Modal Overlay -->
+    <div id="videoModal" class="video-modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <video id="appVideo" controls playsinline>
+                <source id="videoSource" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- iOS 7.0.6 Bulletproof Modal Script -->
+    <script>
+        const modal = document.getElementById("videoModal");
+        const video = document.getElementById("appVideo");
+        const videoSource = document.getElementById("videoSource");
+
+        function openVideo(src) {
+            if (src) {
+                videoSource.src = src;
+                video.load();
+                modal.style.display = "block";
+                video.play();
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        // Close modal when tapping outside content overlay
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
